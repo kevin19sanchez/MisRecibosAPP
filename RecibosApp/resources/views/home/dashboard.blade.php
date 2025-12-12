@@ -64,8 +64,8 @@
                         <tr>
                             <td>{{ $recibo->reference_code }}</td>
                             <td>{{ $recibo->type }}</td>
-                            <td>{{ $recibo->issue_date }}</td>
-                            <td>{{ $recibo->due_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($recibo->issue_date)->format('Y-m-d') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($recibo->due_date)->format('Y-m-d') }}</td>
                             <td>{{ $recibo->amount }}</td>
                             <td>
                                 @if($recibo->status === 'pagado')
@@ -81,8 +81,8 @@
                                         data-id="{{ $recibo->id }}"
                                         data-reference="{{ $recibo->reference_code }}"
                                         data-type="{{ $recibo->type }}"
-                                        data-issue="{{ \Carbon\Carbon::parse($recibo->issue_date)->format('Y-m-d') }}"
-                                        data-due="{{ \Carbon\Carbon::parse($recibo->due_date)->format('Y-m-d') }}"
+                                        data-issue="{{ $recibo->issue_date }}"
+                                        data-due="{{ $recibo->due_date }}"
                                         data-amount="{{ number_format($recibo->amount, 2) }}"
                                         data-status="{{ $recibo->status }}"
                                         data-description="{{ $recibo->description ?? 'No disponible' }}">
